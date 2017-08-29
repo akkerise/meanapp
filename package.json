@@ -1,0 +1,32 @@
+{
+  "name": "meanapp",
+  "version": "1.0.1",
+  "description": "M.E.A.N APP",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "jsonwebtoken": "^7.4.3",
+    "mongoose": "^4.11.7",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "mean",
+    "mean app"
+  ],
+  "author": "AkKe",
+  "license": "ISC"
+}

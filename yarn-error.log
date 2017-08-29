@@ -1,0 +1,50 @@
+Arguments: 
+  /home/akke/.nvm/versions/node/v8.4.0/bin/node /home/akke/.nvm/versions/node/v8.4.0/bin/yarn install
+
+PATH: 
+  /home/akke/.nvm/versions/node/v8.4.0/bin:/home/akke/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  0.27.5
+
+Node version: 
+  8.4.0
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "meanapp",
+    "version": "1.0.0",
+    "description": "M.E.A.N App",
+    "main": "index.js",
+    "scripts": {
+      "test": "npm start",
+      "start": "node app"
+    },
+    "keywords": [
+      "mean"
+    ],
+    "dependencies": {
+      "express": "^4.15.4",
+      "mongoose": "^4.11.7",
+      "bcrypt": "^1.0.2",
+      "cors": "^2.8.4",
+      "jsonwebtoken": "^7.4.3",
+      "body-parser": "^1.17.2",
+      "passport": "^0.4.0",
+      "passport-jwt": "*"
+    },
+    "author": "AkKe",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: EEXIST: file already exists, mkdir '/var/www/html/meanapp/node_modules/body-parser'
