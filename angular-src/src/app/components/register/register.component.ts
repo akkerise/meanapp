@@ -47,39 +47,34 @@ export class RegisterComponent implements OnInit {
 
 
     this.authService.getUserByUsername(this.username).subscribe((res) => {
-      if(res.data === null){
+      // console.log(res);
+      if (res.data === null) {
         this.authService.registerUser(user).subscribe((res) => {
           if (res.success) {
-            this._flashMessagesService.show(res.message, {timeout: 3000, cssClass: 'alert-success'})
-            // this.router.navigate(['/login'])
+            this._flashMessagesService.show(res.message, {timeout: 3000, cssClass: 'alert-success'});
+            this.router.navigate(['/login'])
           } else {
             this._flashMessagesService.show(res.message, {timeout: 3000, cssClass: 'alert-danger'})
-            // this.router.navigate(['/register'])
           }
         })
-      }else{
+      } else {
         this._flashMessagesService.show('Username is exists !', {timeout: 3000, cssClass: 'alert-danger'})
       }
     })
 
-    // Register User
-    // if (this.data === null) {
-    //
-    // }else{
-    //   if(this.data.username === user.username || this.data.email === user.email){
-    //     this._flashMessagesService.show('Username or Email exists !', {timeout: 3000, cssClass: 'alert-warning'})
-    //   }else{
-    //     this.authService.registerUser(user).subscribe((res) => {
-    //       if (res.success) {
-    //         this._flashMessagesService.show(res.message, {timeout: 3000, cssClass: 'alert-success'})
-    //         // this.router.navigate(['/login'])
-    //       } else {
-    //         this._flashMessagesService.show(res.message, {timeout: 3000, cssClass: 'alert-danger'})
-    //         // this.router.navigate(['/register'])
-    //       }
-    //     })
-    //   }
-    // }
+    // let promiseGetDataByUsername = this.getDataByUsername(this.username);
+
+
   }
+
+  // getDataByUsername = (username: string) => {
+  //   this.authService.getUserByUsername(username).subscribe((res) => {
+  //     if(res.data === null){
+  //       return res.status(404).json({success: true, message: 'Username not found'})
+  //     }else{
+  //       return res.status(200).json({success: true, user: res.data})
+  //     }
+  //   })
+  // }
 
 }

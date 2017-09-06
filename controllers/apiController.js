@@ -1,112 +1,108 @@
-var carModel = require('../models/carModel.js');
+var apiModel = require('../models/apiModel.js');
 
 /**
- * carController.js
+ * apiController.js
  *
- * @description :: Server-side logic for managing cars.
+ * @description :: Server-side logic for managing apis.
  */
 module.exports = {
 
     /**
-     * carController.list()
+     * apiController.list()
      */
     list: function (req, res) {
-        carModel.find(function (err, cars) {
+        apiModel.find(function (err, apis) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting car.',
+                    message: 'Error when getting api.',
                     error: err
                 });
             }
-            return res.json(cars);
+            return res.json(apis);
         });
     },
 
     /**
-     * carController.show()
+     * apiController.show()
      */
     show: function (req, res) {
         var id = req.params.id;
-        carModel.findOne({_id: id}, function (err, car) {
+        apiModel.findOne({_id: id}, function (err, api) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting car.',
+                    message: 'Error when getting api.',
                     error: err
                 });
             }
-            if (!car) {
+            if (!api) {
                 return res.status(404).json({
-                    message: 'No such car'
+                    message: 'No such api'
                 });
             }
-            return res.json(car);
+            return res.json(api);
         });
     },
 
     /**
-     * carController.create()
+     * apiController.create()
      */
     create: function (req, res) {
-        var car = new carModel({
-			carDoor : req.body.carDoor,
-			color : req.body.color
+        var api = new apiModel({
 
         });
 
-        car.save(function (err, car) {
+        api.save(function (err, api) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when creating car',
+                    message: 'Error when creating api',
                     error: err
                 });
             }
-            return res.status(201).json(car);
+            return res.status(201).json(api);
         });
     },
 
     /**
-     * carController.update()
+     * apiController.update()
      */
     update: function (req, res) {
         var id = req.params.id;
-        carModel.findOne({_id: id}, function (err, car) {
+        apiModel.findOne({_id: id}, function (err, api) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting car',
+                    message: 'Error when getting api',
                     error: err
                 });
             }
-            if (!car) {
+            if (!api) {
                 return res.status(404).json({
-                    message: 'No such car'
+                    message: 'No such api'
                 });
             }
 
-            car.carDoor = req.body.carDoor ? req.body.carDoor : car.carDoor;
-			car.color = req.body.color ? req.body.color : car.color;
-			
-            car.save(function (err, car) {
+            
+            api.save(function (err, api) {
                 if (err) {
                     return res.status(500).json({
-                        message: 'Error when updating car.',
+                        message: 'Error when updating api.',
                         error: err
                     });
                 }
 
-                return res.json(car);
+                return res.json(api);
             });
         });
     },
 
     /**
-     * carController.remove()
+     * apiController.remove()
      */
     remove: function (req, res) {
         var id = req.params.id;
-        carModel.findByIdAndRemove(id, function (err, car) {
+        apiModel.findByIdAndRemove(id, function (err, api) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when deleting the car.',
+                    message: 'Error when deleting the api.',
                     error: err
                 });
             }

@@ -6,7 +6,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const users = require('./routes/users');
 const config = require('./config/database');
-const carRoutes = require('./routes/carRoutes');
+
 
 // Connect Database
 mongoose.connect(config.database, {useMongoClient: true});
@@ -30,7 +30,7 @@ const port = 3000;
 app.use(cors());
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 
@@ -46,7 +46,6 @@ require('./config/passport')(passport);
 
 
 app.use('/users', users);
-app.use('/cars', carRoutes)
 
 app.listen(port, () => {
     console.log('Server started on port ' + port);

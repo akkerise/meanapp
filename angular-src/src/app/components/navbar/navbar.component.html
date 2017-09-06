@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -14,8 +13,10 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a [routerLinkActive]="['active']" [routerLink]="['/login']">Login</a></li>
-      <li><a [routerLinkActive]="['active']" [routerLink]="['/register']">Register</a></li>
+      <li><a *ngIf="authService.loggedIn()" [hidden]="!isLogged" [routerLinkActive]="['active']" [routerLink]="['/login']">Login</a></li>
+      <li><a *ngIf="authService.loggedIn()" [hidden]="!isLogged" [routerLinkActive]="['active']" [routerLink]="['/register']">Register</a></li>
+      <li><a *ngIf="!authService.loggedIn()"  [routerLinkActive]="['active']" (click)="onLogout()">Logout</a></li>
     </ul>
   </div>
 </nav>
+  

@@ -16,18 +16,18 @@ router.post('/register', (req, res, next) => {
         password: req.body.password
     });
 
-    User.getUserByUsername(newUser.username, (err, res) => {
-        if (err) throw err;
-        res.json({success: true, user: res})
-    })
+    // User.getUserByUsername(newUser.username, (err, res) => {
+    //     if (err) throw err;
+    //     res.json({success: true, user: res})
+    // })
 
-    // User.addUser(newUser, (err, user) => {
-    //     if (err) {
-    //         res.status(201).json({success: false, message: 'Failed to register user'});
-    //     } else {
-    //         res.status(200).json({success: true, message: 'User register success'});
-    //     }
-    // });
+    User.addUser(newUser, (err, user) => {
+        if (err) {
+            res.status(201).json({success: false, message: 'Failed to register user'});
+        } else {
+            res.status(200).json({success: true, message: 'User register success'});
+        }
+    });
 });
 
 // Authenticate
@@ -77,7 +77,6 @@ router.get('/login', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    // res.send(req.params)
     User.getUserById(req.params.id, (err, data) => {
         return res.json({data: data})
     })
@@ -85,7 +84,7 @@ router.get('/:id', (req, res, next) => {
 
 
 // Profile
-router.post('/profile', passport.authenticate('jwt'),
+router.get('/profile', passport.authenticate('jwt'),
     function (req, res) {
         res.redirect('/profile/' + req.user.username);
     }
@@ -100,7 +99,7 @@ router.get('/def', (req, res) => {
 });
 
 router.get('/profile/:username', (req, res, next) => {
-    User.getUserByEmail(req.params.username, (err, data) => {
+    User.getUserByUsername(req.params.username, (err, data) => {
         return res.json({data: data});
     })
 });
